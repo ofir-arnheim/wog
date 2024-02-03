@@ -1,6 +1,7 @@
 import guess_game
 import currency_roulette_game
 import memory_game
+import score
 
 
 # A welcome message for the user, validating the username.
@@ -30,12 +31,15 @@ def start_play():
         print(f"You have chosen " + games[int(game)-1])
         if int(game) == 1:
             difficulty = input("Please select your difficulty from 1 to 5: ")
-            memory_game.play(difficulty)
+            if memory_game.play(difficulty) is True:
+                score.add_score(difficulty)
         elif int(game) == 2:
             difficulty = input("Please select your difficulty from 1 to 100: ")
-            guess_game.play(difficulty)
+            if guess_game.play(difficulty) is True:
+                score.add_score(difficulty)
         elif int(game) == 3:
             difficulty = input("Please select your difficulty from 1 to 10: ")
-            currency_roulette_game.play(difficulty)
+            if currency_roulette_game.play(difficulty) is True:
+                score.add_score(difficulty)
     else:
         print("Choice must be a number between 1 and 3.")
