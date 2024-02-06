@@ -46,13 +46,7 @@ def compare_results(guess, guess_interval):
 
 # We use this function to generate the USD number and call our functions.
 # API request failure is also handled here.
-# We also add a check on the difficulty param here.
 def play(difficulty):
-    if difficulty.isdigit and 1 <= int(difficulty) <= 10:
-        difficulty = int(difficulty)
-    else:
-        print("Difficulty must be a number between 1 and 10.")
-        return None
     usd_amount = random.randint(1, 100)
     guess_interval = get_money_interval(difficulty, usd_amount)
     if guess_interval is not None:

@@ -27,13 +27,7 @@ def compare_results(secret_number, guess):
         return False
 
 
-# We add a check on the difficulty param here.
 def play(difficulty):
-    if difficulty.isdigit and 1 <= int(difficulty) <= 100:
-        difficulty = int(difficulty)
-    else:
-        print("Difficulty must be a number between 1 to 100.")
-        return None
     secret_number = generate_number(difficulty)
     guess = get_guess_from_user(difficulty)
     return compare_results(secret_number, guess)

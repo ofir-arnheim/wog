@@ -1,13 +1,16 @@
 import time
 import random
+import utils
 
 
-# We override print line-breaks in order to re-write lines in the console
+# We override print line-breaks in order to re-write lines in the debugger console
+# We also use our utils function screen clear for other consoles
 # Time module is used to delay the re-write
 def generate_sequence(difficulty):
     list_length = range(0, difficulty)
     numbers_list = [random.randint(1, 101) for i in list_length]
     for number in numbers_list:
+        utils.screen_cleaner()
         print(f"\r{number}", end="")
         time.sleep(0.7)
     print(f"\rTime's up! ", end="")
@@ -38,13 +41,7 @@ def is_list_equal(generated_sequence, user_list):
         return False
 
 
-# We add a check on the difficulty param here.
 def play(difficulty):
-    if difficulty.isdigit and 1 <= int(difficulty) <= 5:
-        difficulty = int(difficulty)
-    else:
-        print("Difficulty must be a number between 1 and 5.")
-        return None
     generated_sequence = generate_sequence(difficulty)
     user_list = get_list_from_users(difficulty)
     return is_list_equal(generated_sequence, user_list)
