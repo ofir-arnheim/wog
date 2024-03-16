@@ -36,8 +36,8 @@ pipeline {
     post {
         always {
             script {
-                docker.image('wog').stop()
-                docker.image('wog').remove()
+                dockerContainer().stop()
+                dockerContainer().remove()
             }
         }
     }
