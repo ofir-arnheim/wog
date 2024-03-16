@@ -36,8 +36,8 @@ pipeline {
     post {
         always {
             script {
-                dockerContainer().stop()
-                dockerContainer().remove()
+                sh 'docker ps -f name=wog -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=wog -q | xargs -r docker container rm'
             }
         }
     }
