@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t wog .'
+                    bat 'docker build -t wog .'
                 }
             }
         }
@@ -19,9 +19,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker stop wog'
-                    sh 'docker rm wog'
-                    sh 'docker run -d -p 8777:20000 --name wog'
+                    bat 'docker stop wog'
+                    bat 'docker rm wog'
+                    bat 'docker run -d -p 8777:20000 --name wog'
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
         stage('Run Selenium Test') {
             steps {
                 script {
-                    sh 'python tests/e2e.py http://localhost:8777'
+                    bat 'python tests/e2e.py http://localhost:8777'
                 }
             }
         }
