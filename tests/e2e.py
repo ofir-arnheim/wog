@@ -10,6 +10,7 @@ def test_scores_service():
         print("Score is not a number")
         return False
     if 1 < int(score) < 1000:
+        print("Score is within the acceptable range")
         return True
     else:
         print("Score is not within the acceptable range")
