@@ -19,7 +19,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    dockerImage.withRun('-p 8777:20000 --name wog') {
+                    wogImage.withRun('-p 8777:20000 --name wog') {
                     }
                 }
             }
