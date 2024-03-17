@@ -22,3 +22,7 @@ def main_function():
     else:
         return -1
 
+
+main_function()
+
+
