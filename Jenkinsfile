@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     def wogImage = docker.image('wog')
-                    wogImage.withRun('-p 8777:20000 --name wog') {
+                    wogImage.withRun('-p 8777:20000') {
                     }
                 }
             }
