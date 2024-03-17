@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def wogImage = docker.build('wog', '.')
+                    sh 'docker build -t wog .'
                 }
             }
         }
@@ -19,9 +19,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    def wogImage = docker.image('wog')
-                    wogImage.withRun('-p 8777:20000') {
-                    }
+                    sh 'docker stop wog'
+                    sh 'docker rm wog'
+                    ah 'docker run -d -p 8777:20000 --name wog'
                 }
             }
         }
@@ -38,8 +38,6 @@ pipeline {
     post {
         always {
             script {
-                wogImage.stop()
-                wogImage.remove(force: true)
             }
         }
     }
