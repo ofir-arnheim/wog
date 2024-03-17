@@ -9,7 +9,7 @@ COPY games/ /app/games/
 COPY templates/ /app/templates/
 COPY *.py /app/
 COPY requirements.txt .
-RUN echo "0" > /app/Scores.txt
+RUN echo "2" > /app/Scores.txt
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
