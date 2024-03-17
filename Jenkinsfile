@@ -21,7 +21,7 @@ pipeline {
                 script {
                     sh 'docker stop wog'
                     sh 'docker rm wog'
-                    ah 'docker run -d -p 8777:20000 --name wog'
+                    sh 'docker run -d -p 8777:20000 --name wog'
                 }
             }
         }
@@ -31,13 +31,6 @@ pipeline {
                 script {
                     sh 'python tests/e2e.py http://localhost:8777'
                 }
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
             }
         }
     }
