@@ -29,18 +29,19 @@ pipeline {
                 script {
                     def result = bat(script: 'python tests/e2e.py http://localhost:8777', returnStatus: true)
                     if (result != 0) {
-                    error 'Selenium test failed'
+                        error 'Selenium test failed'
                     }
                 }
             }
         }
-        post {
-            always {
+    }
+    
+    post {
+        always {
             // Stop and remove the container after execution
-                script {
-                    bat 'docker stop wog'
-                    bat 'docker rm wog'
-                }
+            script {
+                bat 'docker stop wog'
+                bat 'docker rm wog'
             }
         }
     }
