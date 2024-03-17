@@ -37,8 +37,8 @@ pipeline {
     post {
         always {
             script {
-                dockerImage.stop()
-                dockerImage.remove(force: true)
+                wogImage.stop()
+                wogImage.remove(force: true)
             }
         }
     }
