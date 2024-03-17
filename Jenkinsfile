@@ -11,15 +11,16 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('.')
+                    def wogImage = docker.build('wog', '.')
                 }
             }
         }
 
-        stage('Run Application') {
+        stage('Run Docker Container') {
             steps {
                 script {
-                    docker.run('-p 8777:20000 --name wog wog-latest')
+                    dockerImage.withRun('-p 8777:20000 --name wog') {
+                    }
                 }
             }
         }
@@ -36,8 +37,8 @@ pipeline {
     post {
         always {
             script {
-                sh 'docker ps -f name=wog -q | xargs --no-run-if-empty docker container stop'
-                sh 'docker container ls -a -fname=wog -q | xargs -r docker container rm'
+                dockerImage.stop()
+                dockerImage.remove(force: true)
             }
         }
     }
