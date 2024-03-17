@@ -21,7 +21,7 @@ pipeline {
                 script {
                     bat 'docker stop wog'
                     bat 'docker rm wog'
-                    bat 'docker run -d -p 8777:20000 --name wog'
+                    bat 'docker run -d -p 8777:20000 --name wog wog'
                 }
             }
         }
