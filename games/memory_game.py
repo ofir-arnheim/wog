@@ -13,6 +13,7 @@ def generate_sequence(difficulty):
         utils.screen_cleaner()
         print(f"\r{number}", end="")
         time.sleep(0.7)
+
     print(f"\rTime's up! ", end="")
     return numbers_list
 
