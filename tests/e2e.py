@@ -2,9 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-def test_scores_service():
+def test_scores_service(port):
     driver = webdriver.Chrome()
-    driver.get(f"http://127.0.0.1:8777/score")
+    driver.get(f"http://127.0.0.1:{port}/score")
     score = driver.find_element(By.ID, "score").text
     if score.isnumeric() is False:
         print("Score is not a number")
@@ -18,12 +18,11 @@ def test_scores_service():
 
 
 def main_function():
-    if test_scores_service() is True:
+    if test_scores_service("8777") is True:
         return 0
     else:
         return -1
 
 
-main_function()
-
-
+if __name__ == "__main__":
+    exit(main_function())

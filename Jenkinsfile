@@ -27,19 +27,17 @@ pipeline {
         stage('Run Selenium Test') {
             steps {
                 script {
-                    def result = bat(script: 'python tests/e2e.py http://localhost:8777', returnStatus: true)
+                    def result = bat(script: 'python tests/e2e.py', returnStatus: true)
                     if (result != 0) {
-                        currentBuild.result = 'FAILURE' // Mark the build as failed
                         error 'Selenium test failed'
                     }
                 }
             }
         }
     }
-    
+
     post {
         always {
-            // Stop and remove the container after execution
             script {
                 bat 'docker stop wog'
                 bat 'docker rm wog'
