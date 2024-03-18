@@ -29,6 +29,7 @@ pipeline {
                 script {
                     def result = bat(script: 'python tests/e2e.py http://localhost:8777', returnStatus: true)
                     if (result != 0) {
+                        currentBuild.result = 'FAILURE' // Mark the build as failed
                         error 'Selenium test failed'
                     }
                 }
