@@ -9,7 +9,7 @@ def test_scores_service(port):
     if score.isnumeric() is False:
         print("Score is not a number")
         return False
-    if 1 < int(score) < 1000:
+    if 1 <= int(score) <= 1000:
         print("Score is within the acceptable range")
         return True
     else:
@@ -18,7 +18,7 @@ def test_scores_service(port):
 
 
 def main_function():
-    if test_scores_service("8777") is True:
+    if test_scores_service("20000") is True:
         return 0
     else:
         return -1
