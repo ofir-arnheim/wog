@@ -34,7 +34,6 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('Push Docker Image') {
             when {
@@ -53,7 +52,8 @@ pipeline {
                 }
             }
         }
-
+    }
+    
     post {
         always {
             script {
