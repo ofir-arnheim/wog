@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    bat 'docker build -t wog .'
+                    sh 'docker build -t wog .'
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    bat 'docker run -d -p 8777:20000 --name wog wog'
+                    sh 'docker run -d -p 8777:20000 --name wog wog'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage('Run Selenium Test') {
             steps {
                 script {
-                    def result = bat(script: 'python tests/e2e.py', returnStatus: true)
+                    def result = sh(script: 'python tests/e2e.py', returnStatus: true)
                     if (result != 0) {
                         error 'Selenium test failed'
                     }
@@ -40,8 +40,8 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'wog-docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         docker.withRegistry('https://index.docker.io/v1/', 'wog-docker-credentials') {
-                            bat 'docker tag wog:latest ofirarnheim/wog:latest'
-                            bat 'docker push ofirarnheim/wog:latest'
+                            sh 'docker tag wog:latest ofirarnheim/wog:latest'
+                            sh 'docker push ofirarnheim/wog:latest'
                         }
                     }
                 }
@@ -52,8 +52,8 @@ pipeline {
     post {
         always {
             script {
-                bat 'docker stop wog'
-                bat 'docker rm wog'
+                sh 'docker stop wog'
+                sh 'docker rm wog'
             }
         }
     }
