@@ -9,7 +9,9 @@ COPY games/ /app/games/
 COPY templates/ /app/templates/
 COPY *.py /app/
 COPY requirements.txt .
-RUN echo "0" > /app/Scores.txt
+
+# Test the scores function with a dummy file
+RUN echo "1" > /app/Scores.txt
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
