@@ -18,7 +18,7 @@ def test_scores_service(port):
 
 
 def main_function():
-    if test_scores_service("20000") is True:
+    if test_scores_service("8777") is True:
         return 0
     else:
         return -1
